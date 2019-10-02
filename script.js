@@ -47,44 +47,73 @@ createMaze();
 
 let player = document.createElement("div");
 let starterCell = document.getElementsByClassName("startCell");
+let rowPosition = 9;
+let columnPosition = 0;
 player.id = "player";
 player.classList.add("player");
 starterCell[0].appendChild(player);
 
-let playerTop = 20;
-let playerLeft = 20;
+let playerTop = 0;
+let playerLeft = 0;
 
 let playerbox = document.getElementById("playerbox");
 document.addEventListener("keydown", movePlayer);
 function movePlayer(e) {
   if (e.keyCode == 40) {
-    playerTop += 5;
-    console.log(e.code);
-    player.style.top = playerTop + "px";
+    if (
+      map[rowPosition + 1][columnPosition] !== "W" &&
+      rowPosition < map.length
+    ) {
+      playerTop += 20;
+      console.log(e.code);
+      player.style.top = playerTop + "px";
+      rowPosition++;
+    }
   }
+
   if (e.keyCode == 39) {
-    playerLeft += 5;
-    console.log(e.code);
-    player.style.left = playerLeft + "px";
+    if (
+      map[rowPosition][columnPosition + 1] !== "W" &&
+      columnPosition < map[0].length
+    ) {
+      playerLeft += 20;
+      console.log(e.code);
+      player.style.left = playerLeft + "px";
+      columnPosition++;
+      checkForFinish();
+    }
   }
   if (e.keyCode == 38) {
-    playerTop -= 5;
+    if (
+      map[rowPosition - 1][columnPosition] !== "W" &&
+      rowPosition < map[0].length
+    )
+      playerTop -= 20;
     console.log(e.code);
     player.style.top = playerTop + "px";
+    rowPosition--;
   }
+
   if (e.keyCode == 37) {
-    playerLeft -= 5;
-    console.log(e.code);
-    player.style.left = playerLeft + "px";
+    if (
+      map[rowPosition][columnPosition - 1] !== "W" &&
+      columnPosition < map[0].length
+    ) {
+      playerLeft -= 20;
+      console.log(e.code);
+      player.style.left = playerLeft + "px";
+      columnPosition--;
+    }
   }
 }
 
-function stayInsideBoundaries() {
-  if (player === pathCell) {
-    return;
-  } else if (player === wallCell) {
-    alert("Invalid Move");
-  } else if (player === finishCell) {
-    alert("You Finished the Maze!!!");
-  }
+function checkForFinish() {
+  console.log(columnPosition)
+  console.log(map[rowPosition][columnPosition])
+  console.log(String(map[rowPosition - 1][columnPosition + 1]) === "F");
+  if (map[rowPosition][columnPosition] === "F"){
+    
+    alert("You Finished the Maze!");
+  location.reload();}
 }
+    

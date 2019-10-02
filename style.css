@@ -4,52 +4,50 @@
 
 #container {
   border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .row {
   display: flex;
+  box-sizing: border-box;
 }
 
 .cell {
   display: flex;
+  box-sizing: border-box;
   height: 20px;
   width: 20px;
 }
 
 .wallCell {
-  display: flex;
   border: 2px solid purple;
   background-color: purple;
 }
 
 .pathCell {
-  display: flex;
   border: 2px solid rgba(247, 223, 87, 0.959);
   background-color: rgba(247, 223, 87, 0.959);
 }
 .startCell {
-  display: flex;
   border: 2px solid white;
   background-color: white;
+  position: relative;
 }
 .finishCell {
-  display: flex;
   border: 2px solid white;
   background-color: white;
 }
 
 .player {
-  display: flex;
   height: 20px;
   width: 20px;
-  position: absolute;
+  position: relative;
   background-color: black;
 }
 
 #playerbox {
-  display: flex;
-  position: absolute;
-  border: 1px solid black;
+  position: relative;
+
   height: 20px;
   width: 20px;
 }
