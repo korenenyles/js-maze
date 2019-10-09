@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Maze Assessment</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Maze</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   </head>
+
   <body>
-    <h1>Maze Assessment</h1>
+    <div id="header">
+      <h1>MazeRunner</h1>
 
-    <div id="container"></div>
-
+      <h2>Get the Girl to the Finish Line!</h2>
+    </div>
+    <img
+      id="player"
+      src="images/thumb-silhouette-girl-tail-hair-walking-side-vector.jpg"
+      alt="runningperson"
+    />
+    <p id="winMessage">Can you get her through the maze?</p>
+    <main id="maze">
+      <input type="button" value="Restart Maze!" onClick="history.go(0)" />
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

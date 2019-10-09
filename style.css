@@ -1,53 +1,71 @@
-:root {
+#header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  color: whitesmoke;
+  font-family: fantasy;
+  background: rgb(237, 155, 54);
+}
+
+#player {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.mazeRow {
+  flex-direction: row;
   display: flex;
 }
 
-#container {
-  border: 1px solid black;
-  box-sizing: border-box;
+.wall {
+  background: rgb(138, 24, 172);
+  height: 30px;
+  width: 30px;
 }
 
-.row {
+#start {
+  background: rgb(237, 155, 54);
+  height: 30px;
+  width: 30px;
+}
+
+#finish {
+  height: 30px;
+  width: 30px;
+  background: rgb(43, 42, 42);
+}
+
+.walkway {
+  height: 30px;
+  width: 30px;
+  background: rgb(237, 155, 54);
+}
+
+button {
+  font-family: fantasy;
+  font-size: 20px;
+  color: blueviolet;
+}
+
+#winMessage {
   display: flex;
-  box-sizing: border-box;
-}
-
-.cell {
-  display: flex;
-  box-sizing: border-box;
-  height: 20px;
-  width: 20px;
-}
-
-.wallCell {
-  border: 2px solid purple;
-  background-color: purple;
-}
-
-.pathCell {
-  border: 2px solid rgba(247, 223, 87, 0.959);
-  background-color: rgba(247, 223, 87, 0.959);
-}
-.startCell {
-  border: 2px solid white;
-  background-color: white;
-  position: relative;
-}
-.finishCell {
-  border: 2px solid white;
-  background-color: white;
-}
-
-.player {
-  height: 20px;
-  width: 20px;
-  position: relative;
-  background-color: black;
-}
-
-#playerbox {
-  position: relative;
-
-  height: 20px;
-  width: 20px;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  font-family: fantasy;
+  height: 30px;
+  width: 100x;
+  color: rgb(138, 24, 172);
 }

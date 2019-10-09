@@ -1,6 +1,4 @@
-const container = document.getElementById("container");
-
-//map w= wall s= start and f=finish
+const winMess = document.getElementById("winMessage");
 const map = [
   "WWWWWWWWWWWWWWWWWWWWW",
   "W   W     W     W W W",
@@ -19,101 +17,95 @@ const map = [
   "WWWWWWWWWWWWWWWWWWWWW"
 ];
 
-function createMaze() {
-  for (let rowIndex = 0; rowIndex < map.length; rowIndex += 1) {
-    let rowView = document.createElement("div");
-    rowView.classList.add("row");
-    container.appendChild(rowView);
-    for (let columnIndex = 0; columnIndex < map[0].length; columnIndex += 1) {
-      let cellView = document.createElement("div");
-      cellView.classList.add("cell");
-      if (map[rowIndex][columnIndex] === "W") {
-        cellView.classList.add("wallCell");
-      } else if (map[rowIndex][columnIndex] === "S") {
-        cellView.classList.add("startCell");
-      } else if (map[rowIndex][columnIndex] === " ") {
-        cellView.classList.add("pathCell");
-      } else if (map[rowIndex][columnIndex] === "F") {
-        cellView.classList.add("finishCell");
-      }
+const main = document.getElementById("maze");
 
-      rowView.appendChild(cellView);
+let gameOver = false;
+
+for (let rowAbsolute = 0; rowAbsolute < map.length; rowAbsolute++) {
+  let row = map[rowAbsolute];
+  let maze = document.createElement("div");
+  maze.classList.add("mazeRow");
+  for (let columnAbsolute = 0; columnAbsolute < row.length; columnAbsolute++) {
+    let wall = document.createElement("div");
+    wall.dataset.rowIndex = rowAbsolute;
+    wall.dataset.cellIndex = columnAbsolute;
+    maze.appendChild(wall);
+
+    switch (row[columnAbsolute]) {
+      case "W":
+        wall.classList.add("wall");
+        wall.dataset.cellType = "border";
+        break;
+
+      case "S":
+        wall.setAttribute("id", "start");
+        wall.dataset.cellType = "start";
+        break;
+
+      case " ":
+        wall.classList.add("walkway");
+        wall.dataset.cellType = "floor";
+        break;
+
+      case "F":
+        wall.setAttribute("id", "finish");
+        wall.dataset.cellType = "end";
+        break;
+    }
+  }
+  main.appendChild(maze);
+}
+//Elizabeth Scheidt assisted to make keyhandlers function.
+let positionX = 0;
+let positionY = 9;
+const player = document.getElementById("player");
+let start = document.getElementById("start");
+start.appendChild(player);
+let currentPosition = start;
+document.addEventListener("keydown", handleMove);
+
+function handleMove(event) {
+  if (gameOver === false) {
+    switch (event.key) {
+      case "ArrowUp":
+        makeMove(0, -1);
+        break;
+
+      case "ArrowDown":
+        makeMove(0, +1);
+        break;
+
+      case "ArrowLeft":
+        makeMove(-1, 0);
+        break;
+
+      case "ArrowRight":
+        makeMove(+1, 0);
+        break;
     }
   }
 }
-createMaze();
+//Chris Wilson and Sasha Lukas Assisted with MakeMove Function^^
 
-//CREATE MOVEMENT FOR PLAYER DIV
-
-let player = document.createElement("div");
-let starterCell = document.getElementsByClassName("startCell");
-let rowPosition = 9;
-let columnPosition = 0;
-player.id = "player";
-player.classList.add("player");
-starterCell[0].appendChild(player);
-
-let playerTop = 0;
-let playerLeft = 0;
-
-let playerbox = document.getElementById("playerbox");
-document.addEventListener("keydown", movePlayer);
-function movePlayer(e) {
-  if (e.keyCode == 40) {
-    if (
-      map[rowPosition + 1][columnPosition] !== "W" &&
-      rowPosition < map.length
-    ) {
-      playerTop += 20;
-      console.log(e.code);
-      player.style.top = playerTop + "px";
-      rowPosition++;
-    }
-  }
-
-  if (e.keyCode == 39) {
-    if (
-      map[rowPosition][columnPosition + 1] !== "W" &&
-      columnPosition < map[0].length
-    ) {
-      playerLeft += 20;
-      console.log(e.code);
-      player.style.left = playerLeft + "px";
-      columnPosition++;
-      checkForFinish();
-    }
-  }
-  if (e.keyCode == 38) {
-    if (
-      map[rowPosition - 1][columnPosition] !== "W" &&
-      rowPosition < map[0].length
-    )
-      playerTop -= 20;
-    console.log(e.code);
-    player.style.top = playerTop + "px";
-    rowPosition--;
-  }
-
-  if (e.keyCode == 37) {
-    if (
-      map[rowPosition][columnPosition - 1] !== "W" &&
-      columnPosition < map[0].length
-    ) {
-      playerLeft -= 20;
-      console.log(e.code);
-      player.style.left = playerLeft + "px";
-      columnPosition--;
+function makeMove(x, y) {
+  let nextPositionUp = Number(currentPosition.dataset.rowIndex) + y;
+  let nextPositionLeft = Number(currentPosition.dataset.cellIndex) + x;
+  let nextMoveUp = document.querySelector(
+    "[data-row-index = '" +
+      nextPositionUp +
+      "'][data-cell-index = '" +
+      nextPositionLeft +
+      "']"
+  );
+  if (
+    nextMoveUp.dataset.cellType === "floor" ||
+    nextMoveUp.dataset.cellType === "end"
+  ) {
+    nextMoveUp.appendChild(player);
+    currentPosition = nextMoveUp;
+    if (nextMoveUp.dataset.cellType === "end") {
+      gameOver = true;
+      winMess.innerHTML = "You Finished the Maze!";
     }
   }
 }
-
-function checkForFinish() {
-  console.log(columnPosition)
-  console.log(map[rowPosition][columnPosition])
-  console.log(String(map[rowPosition - 1][columnPosition + 1]) === "F");
-  if (map[rowPosition][columnPosition] === "F"){
-    
-    alert("You Finished the Maze!");
-  location.reload();}
-}
-    
