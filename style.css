@@ -1,19 +1,35 @@
+@font-face {
+  font-family: HarryP;
+  src: url("font/HARRP___.TTF");
+}
+
 #header {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
-
-  color: whitesmoke;
-  font-family: fantasy;
-  background: rgb(237, 155, 54);
+  color: white;
+  font-family: HarryP;
+  background: rgba(0, 0, 0, 0);
+  font-size: 25px;
+  border-radius: 30%;
+}
+#headerTwo {
+  font-size: 35px;
+  color: goldenrod;
 }
 
 #player {
   position: absolute;
+  background-image: url("images/harryongrass.png");
   width: 30px;
   height: 30px;
+}
+body {
+  background-image: url("images/QuidditchField_1.jpg");
+  background-repeat: no-repeat;
 }
 
 main {
@@ -30,13 +46,13 @@ main {
 }
 
 .wall {
-  background: rgb(138, 24, 172);
+  background-image: url("images/forwall.png");
   height: 30px;
   width: 30px;
 }
 
 #start {
-  background: rgb(237, 155, 54);
+  background-image: url("images/path.jpg");
   height: 30px;
   width: 30px;
 }
@@ -44,13 +60,13 @@ main {
 #finish {
   height: 30px;
   width: 30px;
-  background: rgb(43, 42, 42);
+  background-image: url("images/snitchongrass.png");
 }
 
 .walkway {
   height: 30px;
   width: 30px;
-  background: rgb(237, 155, 54);
+  background-image: url("images/path.jpg");
 }
 
 button {
@@ -63,9 +79,11 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  align-items: center;
-  font-family: fantasy;
-  height: 30px;
-  width: 100x;
-  color: rgb(138, 24, 172);
+  text-align: center;
+  font-family: HarryP;
+  height: 100px;
+  width: 600px;
+  color: goldenrod;
+  background-color: rgb(29, 28, 28);
+  border-radius: 50%;
 }

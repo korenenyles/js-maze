@@ -1,5 +1,9 @@
 <html>
   <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Henny+Penny&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Maze</title>
@@ -9,16 +13,13 @@
 
   <body>
     <div id="header">
-      <h1>MazeRunner</h1>
+      <div id="headerTwo">Harry Potter Needs Help!</div>
 
-      <h2>Get the Girl to the Finish Line!</h2>
+      <div>Harry is Trying to catch the Golden Snitch!</div>
+
+      <p id="winMessage">Can you get Harry Potter there?</p>
     </div>
-    <img
-      id="player"
-      src="images/thumb-silhouette-girl-tail-hair-walking-side-vector.jpg"
-      alt="runningperson"
-    />
-    <p id="winMessage">Can you get her through the maze?</p>
+    <img id="player" src="images/harryongrass.png" alt="runningperson" />
     <main id="maze">
       <input type="button" value="Restart Maze!" onClick="history.go(0)" />
     </main>

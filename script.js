@@ -105,7 +105,7 @@ function makeMove(x, y) {
     currentPosition = nextMoveUp;
     if (nextMoveUp.dataset.cellType === "end") {
       gameOver = true;
-      winMess.innerHTML = "You Finished the Maze!";
+      winMess.innerHTML = " HARRY CAUGHT THE SNITCH! <br> Gryffindor Wins!";
     }
   }
 }
